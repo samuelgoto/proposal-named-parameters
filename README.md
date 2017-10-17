@@ -1,3 +1,7 @@
+# Introduction
+
+* Early reviewers: @adamk, @domenic, @slightlyoff, @erights, @waldemarhorwats, @dimvar
+
 This is a [stage 0](https://tc39.github.io/process-document/) proposal to add named parameters to Javascript.
 
 In this formulation, an **opt-in** mechanism is introduced to expose parameter names with a new keyword ```as```:
