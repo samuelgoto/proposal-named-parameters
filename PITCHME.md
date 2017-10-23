@@ -1,0 +1,155 @@
+# Named Parameters
+
+---
+
+### Overview
+### Example
+### Use Cases
+### Extensions
+### Challenges
+
+---
+
+### Overview
+
++++
+
+### An opt-in mechanism to expose named parameters.
+
+```javascript
+// ... whe you write this ...
+function dostuff(b as b, c as c) {
+}
+
+// ... you enable callers like this ...
+dostuff(b: 1, c: false); 
+```
+
+@[1-4] (You use "as" to expose named parameters ...)
+@[5-6] (... so your callers can use them ...)
+
+---
+
+### Example
+
++++
+
+### Date.UTC
+
+```javascript
+// Signature:
+// Date.UTC(year, month[, day[, hour[, minute[, second[, millisecond]]]]])
+
+// ... without named parameters ...
+var utcDate = new Date(Date.UTC(96, 11, 1, 0, 0, 0));
+
+// ... with named parameters ...
+var utcDate = new Date(Date.UTC(
+  year: 96, 
+  month: 11, 
+  day: 1, 
+  hour: 0, 
+  minute: 0, 
+  millisecond: 0
+));
+```
+
+@[1-2]
+@[4-5]
+@[7-14]
+
++++
+
+### WebGL
+
+```javascript
+// ... what does this mean? ...
+ctx.drawImage(image, 33, 71, 104, 124, 21, 20, 87, 104);
+
+// ... ah, much clearer ...
+ctx.drawImage(
+  image: image,
+  sx: 33,
+  sy: 71,
+  swidth: 104,
+  sHeight: 124,
+  dx: 21,
+  dy: 20,
+  dWidth: 87,
+  dHeight: 104
+);
+```
+
+@[1-2]
+@[4-15]
+
++++
+
+### Little known parameters
+
+```javascript
+// ...  is it bubble or capture? ...
+el.addEventListener("mouseup", listener, true)
+
+// ... ah, ok, capturing ...
+el.addEventListener("mouseup", listener, capture: false).
+```
+
+@[1-2]
+@[3-4]
+
++++
+
+### Parameter of the same type
+
+```javascript
+// as opposed to move(100, 200) is the 100 x or y?
+move(x: 100, y: 200);
+
+// as opposed to resize(20, 30) is 20 the width or height?
+resize(width: 20, height: 30); 
+```
+
++++
+
+### Multiple optional parameters
+
+```javascript
+// NOTE: there was already an optional parameter,
+// adding one more ...
+function dostuff(b, opt_c, opt_d) {
+}
+
+// Blargh, so, to pass opt_d I have to use an undefined c.
+dostuff(1, undefined, "hello");
+
+// Ah, neat, now I can make "c" optional
+// with a default value and add a new required parameter!
+function dostuff(b as b, c as c = true, d as d) {
+}
+
+// phew, i don't have to use dostuff(1, undefined, "hello") ...
+dostuff(b: 1, d: "hello");
+```
+
+@[1-7]
+@[8-15]
+
+---
+
+### Areas os Investigation
+
++++
+
+### mixed parametesr
+
+```javascript
+// Can we intermingle named parameters with positional?
+fetch("url.json", option: {
+  ...
+});
+```
+
+---
+
+### Stage 1?
