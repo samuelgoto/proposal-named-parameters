@@ -3,10 +3,8 @@
 ---
 
 ### Overview
-### Example
 ### Use Cases
-### Extensions
-### Challenges
+### Areas of Investigation
 
 ---
 
@@ -30,11 +28,11 @@ dostuff(b: 1, c: false);
 
 ---
 
-### Example
+### Use Cases
 
 +++
 
-### Date.UTC
+### Web APIs
 
 ```javascript
 // Signature:
@@ -96,11 +94,11 @@ el.addEventListener("mouseup", listener, capture: false).
 ```
 
 @[1-2]
-@[3-4]
+@[3-5]
 
 +++
 
-### Parameter of the same type
+### Parameters of the same type
 
 ```javascript
 // as opposed to move(100, 200) is the 100 x or y?
@@ -141,7 +139,7 @@ dostuff(b: 1, d: "hello");
 
 +++
 
-### mixed parametesr
+### mixed parameters
 
 ```javascript
 // Can we intermingle named parameters with positional?
