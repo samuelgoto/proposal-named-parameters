@@ -54,7 +54,7 @@ var utcDate = new Date(Date.UTC(
 
 @[1-2]
 @[4-5]
-@[7-14]
+@[7-15]
 
 +++
 
@@ -90,7 +90,7 @@ ctx.drawImage(
 el.addEventListener("mouseup", listener, true)
 
 // ... ah, ok, capturing ...
-el.addEventListener("mouseup", listener, capture: false).
+el.addEventListener("mouseup", listener, capture: false)
 ```
 
 @[1-2]
@@ -135,7 +135,7 @@ dostuff(b: 1, d: "hello");
 
 ---
 
-### Areas os Investigation
+### Areas of Investigation
 
 +++
 
