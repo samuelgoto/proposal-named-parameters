@@ -17,11 +17,19 @@ That enables callers of your function to use named parameters:
 dostuff(b: 1, c: false);
 ```
 
-The opt-in mechanism ```as``` serves as an explicit and deliberate decision to expose parameters, keeping the contract that parameter names are erased by default (i.e. breaking that contract can be harmful, e.g. minifiers or poorly thought out names). We expect (encourage, really) functions that have a large number of parameters to be the exception rather than the norm, so using ```as``` forces users to think hardly about which names to expose publicly (and why, whether).
+## Keeping the contract
+
+The opt-in mechanism ```as``` serves as an explicit and deliberate decision of the author of the function to expose parameter names, ***keeping*** the contract that parameter names are erased by default.
+
+Breaking that contract can be harmful, notably with the interaction with minifiers: exposing (without consent) the parameters now forces library authors to maintain them and their backwards compatibility.
+
+We expect (encourage, really) functions that have a large number of parameters to be the exception rather than the norm,  so an opt-in mechanism works well too.
 
 # Use cases
 
-The most immediate application of named parameter is with legacy web code that has evolved, humm, lets say, organically. So, for example, we could make ```Date.UTC``` more ergonomic by exposing named parameters:
+## Long parameters list
+
+The most immediate application of named parameter is with web APIs that has evolved, humm, lets say, organically. So, for example, we could make ```Date.UTC``` more ergonomic by exposing named parameters:
 
 ```javascript
 // Signature:
@@ -61,6 +69,8 @@ ctx.drawImage(
 );
 ```
 
+## Documentation
+
 It works well too even with as few as three parameters and extremely popular functions (but possibly a very unpopular parameter). For example:
 
 ```javascript
@@ -73,7 +83,9 @@ It works well too even with as few as three parameters and extremely popular fun
 el.addEventListener("mouseup", listener, capture: false).
 ```
 
-In addition to making legacy code more readable, it also has applications when parameter types are of the same type. Example:
+## Disambiguation
+
+In addition to making code more readable, it also has applications when parameter types are of the same type. Example:
 
 ```javascript
 // Documentation, makes reading code easier to know what to expect
@@ -87,17 +99,34 @@ resize(width: 20, height: 30);
 
 You can find here a list of web apis sorted by [number of parameters](#web-apis).
 
-Named parameters enable function signatures to evolve incrementally in a scalable fashion.
+## Multiple Optional Parameters
+
+Named parameters enable function signatures that have already declared optional parameters to have more of them after that.
 
 ```javascript
 // Ah, neat, now I can make "c" optional with a default value and add a new required parameter!
-function dostuff(b as b, c as c = true, d as d) {
+function dostuff(b as b, opt_c as c, opt_d as d) {
 }
+
 // phew, i don't have to use dostuff(1, undefined, "hello") ...
 dostuff(b: 1, d: "hello");
 ```
 
-It also works in conjunction with [destructuring objects](https://simonsmith.io/destructuring-objects-as-function-parameters-in-es6/), for example:
+# Cross Cutting Considerations
+
+Generally speaking, we would want all features (past and future) that are applied to parameters to apply to named parameters.
+
+## Default Values
+
+```javascript
+function a(b = 123 as b, c as c) {
+}
+a(c: false) // b takes 123
+```
+
+## Destructuring Parameters
+
+Destructuring works the same way, except that the parameter can be referred nominally rather than (or, in addition to) positionally. For example:
 
 ```javascript
 fetch("url.txt", options: {
@@ -108,7 +137,8 @@ fetch("url.txt", options: {
 });
 ```
 
-# Open Questions
+
+# Areas of Investigation
 
 * can you intermingle positional arguments with named arguments?
 
@@ -139,4 +169,3 @@ Other notable examples:
 * HTMLInputElement.setRangeText: 4
 * Document.open: 4
 * EventTarget.addEventListener: 4
-
