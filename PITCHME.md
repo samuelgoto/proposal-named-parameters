@@ -32,7 +32,7 @@ dostuff(b: 1, c: false);
 
 +++
 
-### Web APIs
+### Long parameters list
 
 ```javascript
 // Signature:
@@ -83,14 +83,14 @@ ctx.drawImage(
 
 +++
 
-### Little known parameters
+### Uncommon parameters
 
 ```javascript
 // ...  is it bubble or capture? ...
 el.addEventListener("mouseup", listener, true)
 
 // ... ah, ok, capturing ...
-el.addEventListener("mouseup", listener, capture: false)
+el.addEventListener("mouseup", listener, capture: true)
 ```
 
 @[1-2]
@@ -113,25 +113,25 @@ resize(width: 20, height: 30);
 ### Multiple optional parameters
 
 ```javascript
-// NOTE: there was already an optional parameter,
-// adding one more ...
-function dostuff(b, opt_c, opt_d) {
-}
+// Signature:
+blob.slice([start [, end [, contentType]]]);
 
-// Blargh, so, to pass opt_d I have to use an undefined c.
-dostuff(1, undefined, "hello");
+// Awkward way to change the mime type:
+let blob = source.slice(
+  undefined, undefined, "image/jpeg");
 
-// Ah, neat, now I can make "c" optional
-// with a default value and add a new required parameter!
-function dostuff(b as b, c as c = true, d as d) {
-}
+// Error-prone way to change the mime type:
+let blob = source.slice(
+  0, source.size, "image/jpeg");
 
-// phew, i don't have to use dostuff(1, undefined, "hello") ...
-dostuff(b: 1, d: "hello");
+// With named parameters:
+let blob = source.slice(contentType: "image/jpeg")
 ```
 
-@[1-7]
-@[8-15]
+@[1-2]
+@[3-5]
+@[7-9]
+@[11-12]
 
 ---
 
