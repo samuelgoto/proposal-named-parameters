@@ -69,6 +69,8 @@ ctx.drawImage(
 );
 ```
 
+You can find here a list of web apis sorted by [number of parameters](#by-number-of-parameters).
+
 ## Documentation
 
 It works well too even with as few as three parameters and extremely popular functions (but possibly a very unpopular parameter). For example:
@@ -97,8 +99,6 @@ move(x: 100, y: 200);
 resize(width: 20, height: 30); 
 ```
 
-You can find here a list of web apis sorted by [number of parameters](#web-apis).
-
 ## Multiple Optional Parameters
 
 Named parameters enable function signatures that have already declared optional parameters to have more of them after that.
@@ -111,6 +111,8 @@ function dostuff(b as b, opt_c as c, opt_d as d) {
 // phew, i don't have to use dostuff(1, undefined, "hello") ...
 dostuff(b: 1, d: "hello");
 ```
+
+You can find here a list of web apis sorted by [number of optional parameters](#by-number-of-optional-parameters).
 
 # Cross Cutting Considerations
 
@@ -158,6 +160,8 @@ Notable examples:
 * HTMLInputElement.setRangeText: 4
 * Document.open: 4
 * EventTarget.addEventListener: 4
+
+## By number of parameters
 
 All Web APIs with 4 or more parameters, in descending order:
 
@@ -233,6 +237,8 @@ All Web APIs with 4 or more parameters, in descending order:
 * CanvasRenderingContext2D.createLinearGradient: 4
 * WebGLRenderingContext.viewport: 4
 * WebGLRenderingContext.stencilOpSeparate: 4
+
+## By number of optional parameters
 
 And here is the same list but sorted by number of optional parameters:
 
