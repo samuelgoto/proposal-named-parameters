@@ -129,9 +129,9 @@ let blob = source.slice(contentType: "image/jpeg")
 ```
 
 @[1-2]
-@[3-5]
-@[7-9]
-@[11-12]
+@[4-6]
+@[8-10]
+@[12-13]
 
 ---
 
