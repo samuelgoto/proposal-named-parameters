@@ -29,16 +29,20 @@ We expect (encourage, really) functions that have a large number of parameters t
 
 ## Long parameters list
 
-The most immediate application of named parameter is with web APIs that has evolved, humm, lets say, organically. So, for example, we could make ```Date.UTC``` more ergonomic by exposing named parameters:
+The most immediate application of named parameter is with web APIs that have evolved, humm, lets say, organically. So, for example, we could make ```Date.UTC``` more ergonomic by exposing named parameters:
 
 ```javascript
 // Signature:
 // Date.UTC(year, month[, day[, hour[, minute[, second[, millisecond]]]]])
-
-// Without named parameters:
+```
+Gets currently called as:
+```javascript
+// Wow, remind me again what do these mean?
 var utcDate = new Date(Date.UTC(96, 11, 1, 0, 0, 0));
-
-// With named parameters:
+```
+With named parameters:
+```javascript
+// Ah, ok, got it:
 var utcDate = new Date(Date.UTC(
   year: 96, 
   month: 11, 
@@ -49,13 +53,36 @@ var utcDate = new Date(Date.UTC(
 ));
 ```
 
-WebGL is also a good example of a source of functions with 7 or more parameters (by the valid nature of that space):
+You can find here a list of web apis sorted by [number of parameters](#by-number-of-parameters).
+
+## Uncommon Parameters
+
+It works well too even with as few as three parameters and extremely popular functions, when one of the parameters is generally more obscure. For example:
 
 ```javascript
-// What does this mean?
-ctx.drawImage(image, 33, 71, 104, 124, 21, 20, 87, 104);
+// Remind me again whether the third parameter is to
+// capture or to bubble?
+el.addEventListener("mouseup", listener, true)
+```
 
-// Ah, much clearer:
+One can write:
+
+```javascript
+// Ah, ok, we'll capture it rather bubble it.
+el.addEventListener("mouseup", listener, capture: true).
+```
+
+## Disambiguation
+
+In addition to making code more readable, it also has applications when parameter types are of the same type. Example, take Web GLs ```drawImage```:
+
+```javascript
+// What do all of these integers mean?
+ctx.drawImage(image, 33, 71, 104, 124, 21, 20, 87, 104);
+```
+With named parameters:
+```javascript
+// Ah, ok, got it:
 ctx.drawImage(
   image: image,
   sx: 33,
@@ -69,39 +96,9 @@ ctx.drawImage(
 );
 ```
 
-You can find here a list of web apis sorted by [number of parameters](#by-number-of-parameters).
-
-## Documentation
-
-It works well too even with as few as three parameters and extremely popular functions (but possibly a very unpopular parameter). For example:
-
-```javascript
-// As opposed to:
-//
-// el.addEventListener("mouseup", listener, true)
-//
-// followed by your readers googling what the third argument means you can write:
-
-el.addEventListener("mouseup", listener, capture: false).
-```
-
-## Disambiguation
-
-In addition to making code more readable, it also has applications when parameter types are of the same type. Example:
-
-```javascript
-// Documentation, makes reading code easier to know what to expect
-
-// as opposed to move(100, 200) is the 100 x or y?
-move(x: 100, y: 200);
-
-// as opposed to resize(20, 30) is 20 the width or height?
-resize(width: 20, height: 30); 
-```
-
 ## Multiple Optional Parameters
 
-There are many (arguably) valid function signatures with multiple optional parameters where it is error prone / awkward to use positional parameters.
+There are many (arguably) valid function signatures with multiple optional parameters where it is error prone / awkward to use parameters positionally.
 
 For example, take [```Blob.slice```](https://developer.mozilla.org/en-US/docs/Web/API/Blob/slice)'s signature:
 
@@ -147,6 +144,12 @@ a(c: false) // b takes 123
 Destructuring works the same way, except that the parameter can be referred nominally rather than (or, in addition to) positionally. For example:
 
 ```javascript
+function fetch(url, {method, headers, mode} as options) {
+  ...
+}
+```
+Enables it to be called as:
+```javascript
 fetch("url.txt", options: {
   method: 'GET',
   headers: myHeaders,
@@ -154,7 +157,27 @@ fetch("url.txt", options: {
   cache: 'default'
 });
 ```
+Destructuring can also be more generally used to name parameters. For example:
 
+```javascript
+function foo({arg1, arg2, ..., argN}) {
+}
+```
+Also enables callers to use:
+
+```javascript
+foo({arg1: val1, arg2: val2, ..., argN: valN})
+```
+But, as opposed to naming parameters, doesn't enable callers to use positional parameters ...
+
+```javascript
+foo(val1, val2, ..., valN)
+```
+... nor to start their APIs positionally and extend it to nominally afterwards ...
+```javascript
+function foo(arg1, arg2, {arg3, ..., argN}) {
+}
+```
 
 # Areas of Investigation
 
