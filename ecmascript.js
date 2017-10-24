@@ -19,21 +19,28 @@ for (let i in types.definitions) {
 	    let object = i;
 	    // console.log(i);
 	    // console.log(`${object}.${func} with ${parameters.length}`);
-	    result.push({name: `${object}.${func}`, parameters: parameters.length});
+            let optional = 0;
+            parameters.forEach(param => { if (param.optional) { optional++ } });
+            // if (optional > 0) {
+            //  console.log(`${JSON.stringify(parameters)}`);
+            //  return;
+            // }
+	    result.push({name: `${object}.${func}`, parameters: parameters.length, optionals: optional});
 	}
     }
 }
 
-result.sort(function(a, b) { return a.parameters - b.parameters });
+// result.sort(function(a, b) { return a.parameters - b.parameters });
+result.sort(function(a, b) { return a.optionals - b.optionals });
 
 // console.log(`|API| Number of Parameters|`);
 
 for (let p = 0; p < result.length; p++) {
     let api = result[result.length - 1 - p];
 
-    if (api.parameters < 4) {
+    if (api.optionals < 2) {
       break;
     }
 
-    console.log(`* ${api.name}: ${api.parameters}`);
+    console.log(`* ${api.name}: ${api.optionals} optional [of ${api.parameters}]`);
 }
