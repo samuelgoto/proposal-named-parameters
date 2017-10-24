@@ -26,6 +26,14 @@ for (let i in types.definitions) {
 
 result.sort(function(a, b) { return a.parameters - b.parameters });
 
-for (let p = 0; p < 100; p++) {
-    console.log(`${result[result.length - 1 - p].name}: ${result[result.length - 1 - p].parameters}`);
+// console.log(`|API| Number of Parameters|`);
+
+for (let p = 0; p < result.length; p++) {
+    let api = result[result.length - 1 - p];
+
+    if (api.parameters < 4) {
+      break;
+    }
+
+    console.log(`* ${api.name}: ${api.parameters}`);
 }

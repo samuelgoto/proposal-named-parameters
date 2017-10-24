@@ -153,6 +153,14 @@ fetch("url.txt", options: {
 
 Here are the functions on the Web platform with the most paramters (data from http://html5index.org/json/):
 
+Notable examples:
+
+* HTMLInputElement.setRangeText: 4
+* Document.open: 4
+* EventTarget.addEventListener: 4
+
+All Web APIs with 4 or more parameters, in descending order:
+
 * WebGLRenderingContext.texSubImage2D: 9
 * CanvasRenderingContext2D.drawImage: 9
 * WebGLRenderingContext.texImage2D: 9
@@ -163,9 +171,65 @@ Here are the functions on the Web platform with the most paramters (data from ht
 * Path2D.ellipse: 8
 * WebGLRenderingContext.compressedTexImage2D: 7
 * Date.UTC: 7
-
-Other notable examples:
-
-* HTMLInputElement.setRangeText: 4
+* CanvasRenderingContext2D.arcTo: 7
+* WebGLRenderingContext.readPixels: 7
+* CanvasRenderingContext2D.putImageData: 7
+* SVGPathElement.createSVGPathSegArcAbs: 7
+* Path2D.arcTo: 7
+* SVGPathElement.createSVGPathSegArcRel: 7
+* SVGPathElement.createSVGPathSegCurvetoCubicAbs: 6
+* Path2D.addText: 6
+* CanvasRenderingContext2D.bezierCurveTo: 6
+* Path2D.addPathByStrokingText: 6
+* WebGLRenderingContext.vertexAttribPointer: 6
+* SVGPathElement.createSVGPathSegCurvetoCubicRel: 6
+* CanvasRenderingContext2D.setTransform: 6
+* Path2D.bezierCurveTo: 6
+* CanvasRenderingContext2D.createRadialGradient: 6
+* Path2D.arc: 6
+* AudioListener.setOrientation: 6
+* CanvasRenderingContext2D.transform: 6
+* CanvasRenderingContext2D.arc: 6
+* WorkerGlobalScope.createImageBitmap: 5
+* WebGLRenderingContext.uniform4f: 5
+* WebGLRenderingContext.framebufferTexture2D: 5
+* WebGLRenderingContext.vertexAttrib4f: 5
+* WebGLRenderingContext.uniform4i: 5
+* IDBKeyRange.bound: 4
+* CanvasRenderingContext2D.clearRect: 4
+* Path2D.rect: 4
+* Path2D.quadraticCurveTo: 4
+* WebGLRenderingContext.colorMask: 4
+* WebGLRenderingContext.stencilFuncSeparate: 4
+* CanvasRenderingContext2D.strokeText: 4
+* CanvasRenderingContext2D.strokeRect: 4
+* WebGLRenderingContext.scissor: 4
+* Date.setUTCHours: 4
+* WebGLRenderingContext.renderbufferStorage: 4
+* WebGLRenderingContext.clearColor: 4
+* WebGLRenderingContext.uniform3f: 4
+* CustomEvent.initCustomEvent: 4
+* Date.setHours: 4
+* CanvasRenderingContext2D.rect: 4
+* CanvasRenderingContext2D.quadraticCurveTo: 4
+* SVGPaint.setPaint: 4
+* CanvasRenderingContext2D.isPointInPath: 4
+* CanvasRenderingContext2D.getImageData: 4
+* CanvasRenderingContext2D.fillText: 4
+* CanvasRenderingContext2D.fillRect: 4
+* WebGLRenderingContext.drawElements: 4
+* WebGLRenderingContext.uniform3i: 4
+* HTMLTextAreaElement.setRangeText: 4
+* WebGLRenderingContext.blendFuncSeparate: 4
+* WebGLRenderingContext.framebufferRenderbuffer: 4
+* WebGLRenderingContext.blendColor: 4
+* SVGPathElement.createSVGPathSegCurvetoCubicSmoothAbs: 4
+* SVGPathElement.createSVGPathSegCurvetoCubicSmoothRel: 4
 * Document.open: 4
-* EventTarget.addEventListener: 4
+* WebGLRenderingContext.vertexAttrib3f: 4
+* SVGPathElement.createSVGPathSegCurvetoQuadraticAbs: 4
+* HTMLInputElement.setRangeText: 4
+* SVGPathElement.createSVGPathSegCurvetoQuadraticRel: 4
+* CanvasRenderingContext2D.createLinearGradient: 4
+* WebGLRenderingContext.viewport: 4
+* WebGLRenderingContext.stencilOpSeparate: 4
