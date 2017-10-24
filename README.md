@@ -101,15 +101,31 @@ resize(width: 20, height: 30);
 
 ## Multiple Optional Parameters
 
-Named parameters enable function signatures that have already declared optional parameters to have more of them after that.
+There are many (arguably) valid function signatures with multiple optional parameters where it is error prone / awkward to use positional parameters.
+
+For example, take [```Blob.slice```](https://developer.mozilla.org/en-US/docs/Web/API/Blob/slice)'s signature:
 
 ```javascript
-// Ah, neat, now I can make "c" optional with a default value and add a new required parameter!
-function dostuff(b as b, opt_c as c, opt_d as d) {
-}
+// Signature:
+blob.slice([start [, end [, contentType]]]);
+```
+If you wanted to change the ```source``` mimetype, you could:
+```
+// Awkward way to change the mime type:
+let blob = source.slice(
+  undefined, undefined, "image/jpeg");
+```
+or
+```javascript
+// Error-prone way to change the mime type:
+let blob = source.slice(
+  0, source.size, "image/jpeg");
+```
+Whereas with named parameters:
+```javascript
+// With named parameters:
+let blob = source.slice(contentType: "image/jpeg")
 
-// phew, i don't have to use dostuff(1, undefined, "hello") ...
-dostuff(b: 1, d: "hello");
 ```
 
 You can find here a list of web apis sorted by [number of optional parameters](#by-number-of-optional-parameters).
