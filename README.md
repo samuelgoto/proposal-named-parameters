@@ -27,9 +27,9 @@ We expect (encourage, really) functions that have a large number of parameters t
 
 # Use cases
 
-## Long parameters list
+## Legacy Web APIs
 
-The most immediate application of named parameter is with web APIs that have evolved, humm, lets say, organically. So, for example, we could make ```Date.UTC``` more ergonomic by exposing named parameters:
+The most immediate application of named parameter is with web APIs that were created prior to destructuring parameters and options. So, for example, we could make ```Date.UTC``` more ergonomic by exposing named parameters:
 
 ```javascript
 // Signature:
@@ -55,9 +55,9 @@ var utcDate = new Date(Date.UTC(
 
 You can find here a list of web apis sorted by [number of parameters](#by-number-of-parameters).
 
-## Uncommon Parameters
+## Documentation
 
-It works well too even with as few as three parameters and extremely popular functions, when one of the parameters is generally more obscure. For example:
+Named parameters work well too even with as few as three parameters and extremely popular functions, when one of the parameters is generally more obscure. For example:
 
 ```javascript
 // Remind me again whether the third parameter is to
@@ -72,9 +72,16 @@ One can write:
 el.addEventListener("mouseup", listener, capture: true).
 ```
 
-## Disambiguation
+You can enable both users that are confident with your API (and would rather use positional arguments for efficiency / readability) as well as new users that are still getting the hang of your APIs:
 
-In addition to making code more readable, it also has applications when parameter types are of the same type. Example, take Web GLs ```drawImage```:
+```javascript
+// NOTE(newbie): moveTo takes an x and y coordinate.
+moveTo(x: 10, y: 20)
+```
+
+## Multiple Required Parameters
+
+In addition to making code more readable, it also has applications when parameter types are of the same type and are all required. Example, take Web GLs ```drawImage```:
 
 ```javascript
 // What do all of these integers mean?
