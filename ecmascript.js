@@ -30,13 +30,13 @@ for (let i in types.definitions) {
     }
 }
 
-// result.sort(function(a, b) { return a.parameters - b.parameters });
-result.sort(function(a, b) { return a.optionals - b.optionals });
+// result.sort((a, b) => a.parameters - b.parameters);
+result.sort((a, b) => a.optionals - b.optionals);
 
 // console.log(`|API| Number of Parameters|`);
 
 for (let p = 0; p < result.length; p++) {
-    let api = result[result.length - 1 - p];
+    const api = result.at(-1 - p);
 
     if (api.optionals < 2) {
       break;
